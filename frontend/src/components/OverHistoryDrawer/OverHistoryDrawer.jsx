@@ -1,13 +1,20 @@
 import './OverHistoryDrawer.css'
 
-export default function OverHistoryDrawer({ history, isOpen, onClose }) {
+export default function OverHistoryDrawer({ history, isOpen, onClose, onClear }) {
   return (
     <>
       {isOpen && <div className="drawer-backdrop" onClick={onClose} />}
       <div className={`drawer ${isOpen ? 'drawer--open' : ''}`} role="dialog" aria-label="Over History">
         <div className="drawer__header">
           <span className="drawer__title">📜 OVER HISTORY</span>
-          <button className="drawer__close" onClick={onClose} id="close-history-btn">×</button>
+          <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+            {history.length > 0 && (
+              <button className="drawer__clear" onClick={onClear} id="clear-history-btn" title="Clear all history">
+                🗑
+              </button>
+            )}
+            <button className="drawer__close" onClick={onClose} id="close-history-btn">×</button>
+          </div>
         </div>
         <div className="drawer__body">
           {history.length === 0 ? (

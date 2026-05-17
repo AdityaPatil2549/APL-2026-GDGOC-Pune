@@ -77,3 +77,30 @@ against a left-handed pinch-hitter on a dew-affected surface. The dissent wanted
 but the captain's read the conditions right."
 
 Keep it under 150 words. Make every word count."""
+
+VISION_EXTRACT_PROMPT = """You are a cricket data extraction specialist.
+You are looking at a screenshot of a live cricket match (from JioCinema, Hotstar, Cricbuzz, ESPNCricinfo, or similar).
+
+Extract ALL visible match information and return ONLY valid JSON — no markdown, no explanation, no code fences.
+
+Required JSON schema:
+{
+  "innings": <1 or 2>,
+  "over": <integer, current over number 0-19>,
+  "ball": <integer, current ball in over 1-6>,
+  "battingTeam": "<team abbreviation e.g. MI, CSK, RCB>",
+  "bowlingTeam": "<team abbreviation>",
+  "score": <total runs as integer>,
+  "wickets": <wickets fallen as integer>,
+  "target": <target runs integer, or null if 1st innings>,
+  "strikerName": "<batter on strike full name>",
+  "nonStrikerName": "<non-striker full name>",
+  "venue": "<full venue name>",
+  "pitchType": "<flat|two-paced|turning>",
+  "dewFactor": "<none|light|heavy>",
+  "bowlers": [{"name": "<bowler name>", "oversUsed": <integer>}],
+  "impactPlayerAvailable": false
+}
+
+If a field is not visible in the screenshot, use a sensible default.
+Return ONLY the JSON object."""

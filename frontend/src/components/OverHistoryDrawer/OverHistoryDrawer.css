@@ -37,6 +37,15 @@
   transition: all var(--t-fast) ease;
 }
 .drawer__close:hover { border-color: var(--coral); color: var(--coral); }
+.drawer__clear {
+  width: 32px; height: 32px;
+  background: transparent; border: 1px solid var(--border-default);
+  border-radius: var(--r-md); color: var(--text-muted);
+  font-size: 14px; cursor: pointer; font-family: var(--font-body);
+  display: flex; align-items: center; justify-content: center;
+  transition: all var(--t-fast) ease;
+}
+.drawer__clear:hover { border-color: var(--coral); color: var(--coral); }
 
 .drawer__body { flex: 1; overflow-y: auto; padding: var(--sp-4); display: flex; flex-direction: column; gap: var(--sp-3); }
 .drawer__empty { display: flex; flex-direction: column; align-items: center; gap: var(--sp-4); padding: var(--sp-12); text-align: center; color: var(--text-muted); font-size: 13px; line-height: 1.6; }

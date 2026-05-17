@@ -24,6 +24,23 @@
   gap: var(--sp-3);
 }
 
+/* ─── Vision drop zone ───────────────────────────────────── */
+.vision-drop {
+  border: 2px dashed var(--border-default);
+  border-radius: var(--r-lg);
+  padding: var(--sp-4) var(--sp-3);
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--t-fast) ease;
+  background: rgba(58,134,255,0.04);
+  position: relative;
+  overflow: hidden;
+}
+.vision-drop:hover { border-color: var(--blue); background: rgba(58,134,255,0.08); }
+.vision-drop--over { border-color: var(--gold); background: rgba(245,166,35,0.08); border-style: solid; animation: goldGlow 1s infinite; }
+.vision-drop--loading { pointer-events: none; opacity: 0.8; }
+.vision-drop__text { font-size: 12px; color: var(--text-muted); }
+
 /* ─── URL bar ────────────────────────────────────────────── */
 .match-form__url-bar {
   display: flex;
@@ -84,6 +101,29 @@
 .form-select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237BA7C4' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
 .form-input--sm { font-size: 13px; padding: 6px 10px; }
 .form-error { font-size: 11px; color: var(--coral); margin-top: 2px; }
+.form-input--ok  { border-color: var(--green) !important; }
+.form-input--err { border-color: var(--coral) !important; }
+
+/* ─── Captain's Override ─────────────────────────────────── */
+.override-section { display: flex; flex-direction: column; gap: var(--sp-2); }
+.override-textarea {
+  background: rgba(255,179,71,0.06);
+  border: 1px solid rgba(255,179,71,0.3);
+  border-radius: var(--r-md);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 13px;
+  padding: 8px 12px;
+  resize: none;
+  line-height: 1.5;
+  min-height: 60px;
+  transition: border-color var(--t-fast) ease;
+}
+.override-textarea:focus {
+  outline: none; border-color: var(--gold);
+  box-shadow: 0 0 0 2px var(--gold-glow);
+}
+.override-textarea::placeholder { color: var(--text-muted); font-style: italic; }
 
 /* ─── Row layouts ────────────────────────────────────────── */
 .form-row { display: flex; gap: var(--sp-3); align-items: flex-end; }

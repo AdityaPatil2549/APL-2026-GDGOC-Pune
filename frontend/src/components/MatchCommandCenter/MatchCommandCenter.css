@@ -49,6 +49,42 @@
   font-size: 11px; padding: 2px 10px; cursor: pointer; font-family: var(--font-body);
 }
 
+.mcc__retry-banner {
+  padding: var(--sp-2) var(--sp-6);
+  background: rgba(58,134,255,0.1);
+  border-bottom: 1px solid rgba(58,134,255,0.25);
+  color: var(--blue); font-size: 12px;
+  animation: pulseDot 1.5s infinite;
+}
+
+.mcc__override-banner {
+  padding: var(--sp-2) var(--sp-6);
+  background: rgba(245,166,35,0.12);
+  border-bottom: 1px solid rgba(245,166,35,0.3);
+  color: var(--gold); font-size: 12px; font-weight: 600;
+  animation: fadeInUp 0.3s ease;
+}
+
+.history-count {
+  font-size: 10px; font-weight: 700;
+  color: var(--gold);
+}
+
+/* Override toggle */
+.override-toggle-row { padding-bottom: var(--sp-1); }
+.override-toggle-btn {
+  width: 100%;
+  padding: var(--sp-2) var(--sp-3);
+  background: transparent;
+  border: 1px dashed rgba(245,166,35,0.4);
+  border-radius: var(--r-md);
+  color: var(--text-muted);
+  font-size: 12px; font-weight: 600; font-family: var(--font-body);
+  cursor: pointer; transition: all var(--t-fast) ease; text-align: left;
+}
+.override-toggle-btn:hover { border-color: var(--gold); color: var(--gold); }
+.override-toggle-btn--on { border-color: var(--gold); color: var(--gold); background: rgba(245,166,35,0.06); border-style: solid; }
+
 /* ─── 3-column body ──────────────────────────────────────── */
 .mcc__body {
   display: grid;
