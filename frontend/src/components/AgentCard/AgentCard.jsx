@@ -1,4 +1,5 @@
-import { useEffect, useRef } from 'react'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 import { AGENTS } from '../../constants/agents'
 import './AgentCard.css'
 
@@ -12,12 +13,20 @@ function TypingDots({ agentColor }) {
   )
 }
 
-function StreamingText({ text }) {
+function StreamingMarkdown({ text, isDone }) {
+  if (isDone) {
+    return (
+      <div className="prose">
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>{text}</ReactMarkdown>
+      </div>
+    )
+  }
+  // While streaming, word-by-word animation on raw text
   const words = text.split(/(\s+)/)
   return (
     <p className="agent-card__text">
       {words.map((w, i) => (
-        <span key={i} className="word" style={{ animationDelay: `${i * 18}ms` }}>{w}</span>
+        <span key={i} className="word" style={{ animationDelay: `${Math.min(i * 12, 400)}ms` }}>{w}</span>
       ))}
     </p>
   )
@@ -36,10 +45,13 @@ export default function AgentCard({ agentId, message, status, badge, toolCall, d
       className={`agent-card ${isActive ? 'agent-card--active' : ''} ${isDone ? 'agent-card--done' : ''}`}
       style={{
         '--agent-color': agent.color,
-        '--agent-glow': `${agent.color}4D`,
-        animationDelay: `${delay}ms`,
+        '--agent-glow':  `${agent.color}50`,
+        animationDelay:  `${delay}ms`,
       }}
     >
+      {/* Top accent line */}
+      <div className="agent-card__accent-line" />
+
       {/* Header */}
       <div className="agent-card__header">
         <div className="agent-card__avatar" style={{ background: agent.avatarBg }}>
@@ -84,7 +96,7 @@ export default function AgentCard({ agentId, message, status, badge, toolCall, d
       {/* Body */}
       <div className="agent-card__body">
         {isThinking && !message && <TypingDots agentColor={agent.color} />}
-        {message && <StreamingText text={message} />}
+        {message && <StreamingMarkdown text={message} isDone={isDone} />}
       </div>
     </div>
   )

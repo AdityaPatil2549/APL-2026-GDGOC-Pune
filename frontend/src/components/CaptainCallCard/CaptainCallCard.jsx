@@ -1,11 +1,13 @@
 import { useState } from 'react'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 import ConfidenceBar from '../shared/ConfidenceBar'
 import WinProbGauge from '../shared/WinProbGauge'
 import VoiceOutput from '../VoiceOutput/VoiceOutput'
 import './CaptainCallCard.css'
 
 export default function CaptainCallCard({ captainsCall, onRedebate }) {
-  const [copied, setCopied] = useState(false)
+  const [copied, setCopied]   = useState(false)
   const [dissent, setDissent] = useState(false)
 
   if (!captainsCall) return null
@@ -22,9 +24,8 @@ export default function CaptainCallCard({ captainsCall, onRedebate }) {
 
   const borderClass =
     confPct >= 80 ? 'call-card--high' :
-    confPct >= 60 ? 'call-card--mid' : 'call-card--low'
+    confPct >= 60 ? 'call-card--mid'  : 'call-card--low'
 
-  // Text for voice output
   const voiceText = [
     `Captain's Call: ${decision}.`,
     commentaryOutput || reasoning || '',
@@ -51,14 +52,18 @@ export default function CaptainCallCard({ captainsCall, onRedebate }) {
     }
   }
 
+  const bodyText = commentaryOutput || reasoning || ''
+
   return (
     <div className={`call-card ${borderClass} animate-slideInRight`}>
       <div className="call-card__glow" />
 
       {/* Header */}
       <div className="call-card__header">
-        <span className="call-card__icon">🏏</span>
-        <div style={{ flex: 1 }}>
+        <div className="call-card__icon-wrap">
+          <span className="call-card__icon">🏏</span>
+        </div>
+        <div style={{ flex: 1, minWidth: 0 }}>
           <div className="call-card__label">CAPTAIN'S CALL</div>
           <div className="call-card__decision">{decision}</div>
         </div>
@@ -67,28 +72,32 @@ export default function CaptainCallCard({ captainsCall, onRedebate }) {
 
       <div className="divider" />
 
-      {/* Field setup */}
+      {/* Field Setup */}
       {fieldSetup && fieldSetup !== 'See full reasoning below' && (
-        <div className="call-card__field">
+        <div className="call-card__section">
           <span className="call-card__section-label">FIELD SETUP</span>
-          <p className="call-card__field-text">{fieldSetup}</p>
+          <div className="prose">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{fieldSetup}</ReactMarkdown>
+          </div>
         </div>
       )}
 
-      {/* Commentary */}
-      {(commentaryOutput || reasoning) && (
-        <div className="call-card__reasoning">
+      {/* Reasoning — rendered as Markdown */}
+      {bodyText && (
+        <div className="call-card__section call-card__reasoning-section">
           <span className="call-card__section-label">REASONING</span>
-          <p className="call-card__reasoning-text">"{commentaryOutput || reasoning}"</p>
+          <blockquote className="call-card__reasoning-block">
+            <div className="prose">
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>{bodyText}</ReactMarkdown>
+            </div>
+          </blockquote>
         </div>
       )}
 
       <div className="divider" />
 
       <ConfidenceBar value={confPct} color={confColor} label="CONFIDENCE SCORE" />
-
       <div className="divider" />
-
       <WinProbGauge before={winProbBefore} after={winProbAfter} />
 
       {/* Counterfactual / dissent */}
@@ -101,11 +110,15 @@ export default function CaptainCallCard({ captainsCall, onRedebate }) {
               onClick={() => setDissent(d => !d)}
               type="button"
             >
-              <span>😈 What the dissent said</span>
-              <span>{dissent ? '▲' : '▼'}</span>
+              <span>😈 Devil's argument</span>
+              <span className={`dissent-arrow ${dissent ? 'dissent-arrow--open' : ''}`}>▼</span>
             </button>
             {dissent && (
-              <p className="call-card__dissent-text animate-fadeInUp">{counterfactual}</p>
+              <div className="call-card__dissent-body animate-fadeInUp">
+                <div className="prose">
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>{counterfactual}</ReactMarkdown>
+                </div>
+              </div>
             )}
           </div>
         </>

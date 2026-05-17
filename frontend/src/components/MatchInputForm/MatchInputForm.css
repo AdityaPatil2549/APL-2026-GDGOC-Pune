@@ -83,20 +83,25 @@
   text-transform: uppercase;
 }
 .form-input, .form-select {
-  background: var(--bg-input);
-  border: 1px solid var(--border-default);
+  background: rgba(8, 16, 36, 0.65);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.08);
   border-radius: var(--r-md);
   color: var(--text-primary);
   font-family: var(--font-body);
-  font-size: 14px;
-  padding: 8px 12px;
-  transition: border-color var(--t-fast) ease, box-shadow var(--t-fast) ease;
+  font-size: 13.5px;
+  padding: 9px 13px;
+  transition: border-color var(--t-fast) ease, box-shadow var(--t-fast) ease, background var(--t-fast) ease;
   width: 100%;
 }
 .form-input:focus, .form-select:focus {
   outline: none;
-  border-color: var(--border-focus);
-  box-shadow: 0 0 0 2px var(--gold-glow);
+  border-color: rgba(245,166,35,0.5);
+  box-shadow: 0 0 0 3px rgba(245,166,35,0.12);
+  background: rgba(10,20,45,0.8);
+}
+.form-input:hover:not(:focus), .form-select:hover:not(:focus) {
+  border-color: rgba(255,255,255,0.14);
 }
 .form-select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237BA7C4' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
 .form-input--sm { font-size: 13px; padding: 6px 10px; }

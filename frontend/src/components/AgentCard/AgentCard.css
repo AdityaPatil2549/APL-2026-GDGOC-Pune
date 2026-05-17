@@ -1,35 +1,48 @@
 .agent-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-default);
-  border-left: 3px solid var(--agent-color);
-  border-radius: var(--r-lg);
-  padding: var(--sp-4);
-  box-shadow: var(--shadow-card);
-  animation: fadeInUp 0.4s var(--ease-spring) both;
-  transition: box-shadow var(--t-med) ease;
   position: relative;
+  background: var(--bg-glass);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--r-lg);
+  padding: var(--sp-5);
+  box-shadow: var(--shadow-glass);
+  animation: fadeInUp 0.45s var(--ease-spring) both;
+  transition: transform var(--t-med) var(--ease-out), box-shadow var(--t-med) ease;
   overflow: hidden;
 }
 
-/* Subtle background shimmer on the left */
+.agent-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glass), 0 0 20px var(--agent-glow, rgba(245,166,35,0.15));
+}
+
+/* Top color accent bar */
+.agent-card__accent-line {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--agent-color), transparent 70%);
+  pointer-events: none;
+}
+
+/* Left glow strip */
 .agent-card::before {
   content: '';
   position: absolute;
   top: 0; left: 0; bottom: 0;
-  width: 40px;
-  background: linear-gradient(90deg, color-mix(in srgb, var(--agent-color) 8%, transparent), transparent);
+  width: 48px;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--agent-color) 10%, transparent), transparent);
   pointer-events: none;
 }
 
 .agent-card--active {
-  border-left-color: var(--agent-color);
-  box-shadow: -4px 0 24px var(--agent-glow), var(--shadow-card);
-  animation: agentPulse 2s ease-in-out infinite;
+  border-color: color-mix(in srgb, var(--agent-color) 40%, transparent);
+  box-shadow: var(--shadow-glass), -2px 0 18px var(--agent-glow), 0 0 0 1px color-mix(in srgb, var(--agent-color) 20%, transparent);
 }
 
 .agent-card--done {
-  border-left-color: color-mix(in srgb, var(--agent-color) 50%, transparent);
-  opacity: 0.9;
+  opacity: 0.92;
 }
 
 /* ─── Header ─────────────────────────────────────────────── */
@@ -37,39 +50,41 @@
   display: flex;
   align-items: center;
   gap: var(--sp-3);
-  margin-bottom: var(--sp-3);
+  margin-bottom: var(--sp-4);
 }
 
 .agent-card__avatar {
   position: relative;
-  width: 40px; height: 40px;
+  width: 42px; height: 42px;
   border-radius: var(--r-md);
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
-  border: 1px solid color-mix(in srgb, var(--agent-color) 30%, transparent);
+  border: 1px solid color-mix(in srgb, var(--agent-color) 35%, transparent);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.35);
 }
 .agent-card__emoji { font-size: 20px; }
 
 .agent-card__pulse {
   position: absolute;
-  inset: -4px;
+  inset: -5px;
   border-radius: var(--r-md);
-  border: 2px solid var(--agent-color);
-  animation: agentPulse 1.5s ease-in-out infinite;
+  border: 1.5px solid var(--agent-color);
+  animation: agentPulse 1.6s ease-in-out infinite;
   pointer-events: none;
 }
 
 .agent-card__meta { flex: 1; min-width: 0; }
 .agent-card__name {
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 700;
   color: var(--agent-color);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
 }
 .agent-card__tagline {
   font-size: 11px;
   color: var(--text-muted);
   font-style: italic;
+  margin-top: 1px;
 }
 
 .agent-card__status-area {
@@ -80,37 +95,41 @@
 }
 .agent-card__check {
   color: var(--green);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
 }
 
 /* ─── Tool Call ──────────────────────────────────────────── */
 .agent-card__tool-call {
-  background: rgba(58,134,255,0.08);
-  border: 1px solid rgba(58,134,255,0.25);
+  background: rgba(77,159,255,0.06);
+  border: 1px solid rgba(77,159,255,0.2);
   border-radius: var(--r-md);
   padding: var(--sp-3);
-  margin-bottom: var(--sp-3);
+  margin-bottom: var(--sp-4);
   display: flex;
   flex-direction: column;
   gap: 6px;
+  backdrop-filter: blur(8px);
 }
 .tool-call__header { display: flex; align-items: center; justify-content: space-between; }
 .tool-call__source { font-size: 11px; color: var(--blue); font-family: var(--font-mono); }
-.tool-call__label { font-size: 12px; color: var(--text-secondary); }
-.tool-call__progress-track { height: 4px; background: var(--border-default); border-radius: var(--r-pill); overflow: hidden; }
+.tool-call__label  { font-size: 12px; color: var(--text-secondary); }
+.tool-call__progress-track {
+  height: 3px; background: rgba(77,159,255,0.12); border-radius: var(--r-pill); overflow: hidden;
+}
 .tool-call__progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--blue), #7FBBFF);
+  background: linear-gradient(90deg, var(--blue), #A5D8FF);
   border-radius: var(--r-pill);
-  transition: width 0.3s ease;
+  transition: width 0.4s ease;
+  animation: barFill 0.4s ease;
 }
 
 /* ─── Body ───────────────────────────────────────────────── */
-.agent-card__body { min-height: 24px; }
+.agent-card__body { min-height: 28px; }
 .agent-card__text {
-  font-size: 14px;
-  line-height: 1.7;
+  font-size: 13.5px;
+  line-height: 1.75;
   color: var(--text-primary);
 }
 
@@ -119,14 +138,14 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  padding: 4px 0;
+  padding: 6px 0;
 }
 .typing-indicator span {
   display: inline-block;
   width: 7px; height: 7px;
   border-radius: 50%;
   background: var(--dot-color, var(--text-muted));
-  animation: typing 1.2s ease-in-out infinite;
+  animation: typing 1.3s ease-in-out infinite;
 }
-.typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
-.typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+.typing-indicator span:nth-child(2) { animation-delay: 0.22s; }
+.typing-indicator span:nth-child(3) { animation-delay: 0.44s; }
