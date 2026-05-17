@@ -1,0 +1,124 @@
+.mcc {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--bg-base);
+  overflow: hidden;
+}
+
+/* ─── Mobile tabs ────────────────────────────────────────── */
+.mcc__tabs {
+  display: none;
+  gap: 2px;
+  padding: var(--sp-2) var(--sp-4);
+  background: var(--bg-header);
+  border-bottom: 1px solid var(--border-default);
+}
+.mcc__tab {
+  flex: 1;
+  padding: var(--sp-2) var(--sp-3);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--r-md);
+  color: var(--text-muted);
+  font-size: 12px; font-weight: 600;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: all var(--t-fast) ease;
+  position: relative;
+}
+.mcc__tab--active { background: var(--bg-card); border-color: var(--border-default); color: var(--gold); }
+.mcc__tab-badge {
+  position: absolute; top: 4px; right: 4px;
+  width: 7px; height: 7px;
+  background: var(--gold); border-radius: 50%;
+  animation: pulseDot 1.2s infinite;
+}
+
+/* ─── Error ──────────────────────────────────────────────── */
+.mcc__error {
+  padding: var(--sp-3) var(--sp-6);
+  background: rgba(255,71,87,0.12);
+  border-bottom: 1px solid rgba(255,71,87,0.3);
+  color: var(--coral); font-size: 13px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.mcc__error-dismiss {
+  background: transparent; border: 1px solid var(--coral);
+  border-radius: var(--r-pill); color: var(--coral);
+  font-size: 11px; padding: 2px 10px; cursor: pointer; font-family: var(--font-body);
+}
+
+/* ─── 3-column body ──────────────────────────────────────── */
+.mcc__body {
+  display: grid;
+  grid-template-columns: 300px 1fr 292px;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* ─── Panels ─────────────────────────────────────────────── */
+.mcc__panel {
+  display: flex; flex-direction: column;
+  overflow: hidden; padding: var(--sp-4);
+  border-right: 1px solid var(--border-default);
+}
+.mcc__panel--left   { background: rgba(17,34,64,0.5); }
+.mcc__panel--center { background: var(--bg-base); border-right: 1px solid var(--border-default); }
+.mcc__panel--right  { background: rgba(17,34,64,0.35); border-right: none; overflow-y: auto; }
+
+/* ─── Panel header ───────────────────────────────────────── */
+.panel-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-bottom: var(--sp-3); margin-bottom: var(--sp-3);
+  border-bottom: 1px solid var(--border-default);
+  flex-shrink: 0;
+}
+.panel-title {
+  font-family: var(--font-display);
+  font-size: 16px; letter-spacing: 0.14em; color: var(--text-secondary);
+}
+.panel-back-btn {
+  background: transparent; border: 1px solid var(--border-default);
+  border-radius: var(--r-pill); color: var(--text-muted);
+  font-size: 11px; padding: 3px 10px; cursor: pointer;
+  font-family: var(--font-body); transition: all var(--t-fast) ease;
+}
+.panel-back-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ─── Call idle ──────────────────────────────────────────── */
+.mcc__call-idle {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: var(--sp-4); padding: var(--sp-12) var(--sp-6);
+  text-align: center; flex: 1;
+  color: var(--text-muted); font-size: 13px; line-height: 1.6;
+}
+.mcc__call-idle-icon {
+  font-size: 40px; opacity: 0.3;
+  animation: orbFloat 3s ease-in-out infinite;
+}
+.mcc__call-idle-spinner {
+  width: 32px; height: 32px;
+  border: 2px solid var(--border-default);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spinBall 0.8s linear infinite;
+}
+
+/* ─── Responsive ─────────────────────────────────────────── */
+@media (max-width: 1199px) {
+  .mcc__tabs { display: flex; }
+  .mcc__body { grid-template-columns: 1fr; overflow: auto; }
+  .mcc__panel {
+    display: none; border-right: none;
+    border-bottom: 1px solid var(--border-default);
+    max-height: calc(100vh - 130px); overflow-y: auto;
+  }
+  .mcc__panel--visible { display: flex; }
+}
+@media (min-width: 1200px) {
+  .mcc__tabs { display: none; }
+  .mcc__panel { display: flex !important; }
+  .mcc__body { overflow: hidden; }
+}

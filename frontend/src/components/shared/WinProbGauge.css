@@ -1,0 +1,21 @@
+.gauge { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.gauge__title { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
+.gauge__arc-wrap { width: 100%; max-width: 160px; }
+.gauge__svg { width: 100%; overflow: visible; }
+.gauge__fill {
+  stroke-dasharray: 0 172.8;
+  animation: gaugeFill 1.2s var(--ease-out) 0.3s forwards;
+}
+@keyframes gaugeFill {
+  from { stroke-dasharray: 0 172.8; }
+}
+.gauge__values {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  justify-content: space-around;
+}
+.gauge__val { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.gauge__val-label { font-size: 10px; color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; }
+.gauge__val-num { font-size: 18px; font-weight: 700; color: var(--text-primary); }
+.gauge__val--delta .gauge__val-num { font-size: 16px; }

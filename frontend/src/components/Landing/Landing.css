@@ -1,0 +1,247 @@
+.landing {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-base);
+  overflow-x: hidden;
+}
+
+.landing__canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ─── Content ────────────────────────────────────────────── */
+.landing__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--sp-8) var(--sp-6);
+  text-align: center;
+  gap: var(--sp-6);
+}
+
+/* ─── Logo ───────────────────────────────────────────────── */
+.landing__logo {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-2);
+}
+.landing__logo-icon {
+  font-size: 32px;
+  filter: drop-shadow(0 0 12px rgba(245,166,35,0.6));
+}
+.landing__logo-text {
+  font-family: var(--font-display);
+  font-size: 18px;
+  letter-spacing: 0.35em;
+  color: var(--gold);
+  opacity: 0.85;
+}
+
+/* ─── Headline ───────────────────────────────────────────── */
+.landing__headline {
+  font-family: var(--font-display);
+  font-size: clamp(56px, 10vw, 120px);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: baseline;
+  gap: 0.25em;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.landing__headline-main {
+  color: var(--text-primary);
+}
+.landing__headline-dhoni {
+  color: var(--gold);
+  text-shadow: 0 0 40px rgba(245,166,35,0.5), 0 0 80px rgba(245,166,35,0.2);
+  position: relative;
+}
+.landing__headline-dhoni::after {
+  content: 'DHONI';
+  position: absolute;
+  inset: 0;
+  color: var(--coral);
+  animation: heroTextGlitch 6s infinite;
+  pointer-events: none;
+}
+
+/* ─── Sub-headline ───────────────────────────────────────── */
+.landing__subheadline {
+  font-size: clamp(16px, 2.5vw, 20px);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 520px;
+}
+.landing__subheadline em {
+  color: var(--text-primary);
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* ─── Agent Pills ────────────────────────────────────────── */
+.landing__agents {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  justify-content: center;
+}
+.landing__agent-pill {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-2) var(--sp-4);
+  border-radius: var(--r-pill);
+  border: 1px solid color-mix(in srgb, var(--agent-color) 40%, transparent);
+  background: color-mix(in srgb, var(--agent-color) 10%, transparent);
+  color: var(--agent-color);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: all var(--t-med) ease;
+}
+.landing__agent-pill:hover {
+  background: color-mix(in srgb, var(--agent-color) 20%, transparent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--agent-color) 30%, transparent);
+}
+
+/* ─── CTA ────────────────────────────────────────────────── */
+.landing__cta-group {
+  display: flex;
+  gap: var(--sp-4);
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.landing__cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-4) var(--sp-8);
+  background: linear-gradient(135deg, var(--gold) 0%, #E8950A 100%);
+  color: #0B1426;
+  font-family: var(--font-display);
+  font-size: 20px;
+  letter-spacing: 0.08em;
+  border: none;
+  border-radius: var(--r-md);
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform var(--t-fast) ease, box-shadow var(--t-fast) ease;
+  box-shadow: 0 4px 20px var(--gold-glow);
+}
+.landing__cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(245,166,35,0.5);
+}
+.landing__cta:active {
+  transform: translateY(1px) scale(0.98);
+}
+.landing__cta--sm {
+  font-size: 16px;
+  padding: var(--sp-3) var(--sp-6);
+  margin-top: var(--sp-8);
+}
+
+.landing__cta-shimmer {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 40%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  animation: shimmerSweep 2.5s ease-in-out infinite;
+  pointer-events: none;
+}
+.landing__cta-icon { font-size: 1.1em; }
+
+.landing__secondary-btn {
+  background: transparent;
+  border: 1px solid var(--border-default);
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 14px;
+  padding: var(--sp-3) var(--sp-6);
+  border-radius: var(--r-md);
+  cursor: pointer;
+  transition: all var(--t-med) ease;
+}
+.landing__secondary-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* ─── Badge ──────────────────────────────────────────────── */
+.landing__badge { margin-top: var(--sp-2); }
+
+/* ─── How it works ───────────────────────────────────────── */
+.landing__how {
+  position: relative;
+  z-index: 1;
+  padding: var(--sp-16) var(--sp-6);
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+.landing__how-title {
+  font-family: var(--font-display);
+  font-size: 42px;
+  letter-spacing: 0.06em;
+  color: var(--text-primary);
+  margin-bottom: var(--sp-8);
+}
+.landing__steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--sp-6);
+  margin-bottom: var(--sp-4);
+}
+.landing__step {
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--r-lg);
+  padding: var(--sp-6);
+  text-align: left;
+  transition: transform var(--t-med) ease, border-color var(--t-med) ease;
+}
+.landing__step:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold);
+  box-shadow: var(--shadow-gold);
+}
+.landing__step-num {
+  font-family: var(--font-display);
+  font-size: 48px;
+  color: var(--gold);
+  opacity: 0.3;
+  line-height: 1;
+  margin-bottom: var(--sp-3);
+}
+.landing__step-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--sp-2);
+}
+.landing__step-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+  .landing__headline { font-size: 52px; }
+  .landing__cta-group { flex-direction: column; width: 100%; }
+  .landing__cta { width: 100%; justify-content: center; }
+}

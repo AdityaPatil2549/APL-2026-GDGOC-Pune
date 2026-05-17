@@ -1,0 +1,61 @@
+.scoreboard-strip {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  padding: var(--sp-3) var(--sp-6);
+  background: var(--bg-header);
+  border-bottom: 1px solid var(--border-default);
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+}
+.scoreboard-strip::-webkit-scrollbar { display: none; }
+
+.sb__team {
+  font-family: var(--font-display);
+  font-size: 20px;
+  letter-spacing: 0.1em;
+  color: var(--text-primary);
+}
+.sb__team--bowling { color: var(--text-secondary); font-size: 16px; }
+
+.sb__score {
+  display: flex;
+  align-items: baseline;
+  gap: 1px;
+}
+.flip-digit {
+  font-size: 28px;
+  color: var(--gold);
+  display: inline-block;
+  min-width: 18px;
+  text-align: center;
+}
+.flip-digit.flip {
+  animation: flipDigit 0.3s ease-in-out;
+}
+.sb__score-sep { font-size: 24px; color: var(--text-muted); margin: 0 2px; }
+
+.sb__over { display: flex; flex-direction: column; align-items: center; }
+.sb__over-label { font-size: 9px; letter-spacing: 0.1em; color: var(--text-muted); text-transform: uppercase; }
+.sb__over-val { font-size: 16px; color: var(--text-secondary); font-weight: 600; }
+
+.sb__divider { width: 1px; height: 28px; background: var(--border-default); flex-shrink: 0; }
+.sb__vs { font-size: 11px; color: var(--text-muted); letter-spacing: 0.1em; }
+
+.sb__target, .sb__rrr { display: flex; flex-direction: column; align-items: center; }
+.sb__target-label, .sb__rrr-label { font-size: 9px; letter-spacing: 0.1em; color: var(--text-muted); text-transform: uppercase; }
+.sb__target-val { font-size: 18px; font-weight: 700; color: var(--text-primary); }
+.sb__rrr { border-radius: var(--r-md); padding: 4px 10px; }
+.sb__rrr-val { font-size: 16px; font-weight: 700; }
+.rrr-low  { background: rgba(46,213,115,0.12); color: var(--rrr-low); }
+.rrr-mid  { background: rgba(255,179,71,0.12);  color: var(--rrr-mid); }
+.rrr-high { background: rgba(255,71,87,0.12);   color: var(--rrr-high); animation: pulseDot 1.5s infinite; }
+
+.sb__dew { font-size: 12px; color: var(--blue); }
+.sb__dew--heavy { animation: shimmer 2s linear infinite; background: linear-gradient(90deg, var(--blue), #7FBBFF, var(--blue)); background-size: 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.sb__venue { font-size: 12px; color: var(--text-muted); font-weight: 500; }
+.sb__gemini { flex-shrink: 0; }

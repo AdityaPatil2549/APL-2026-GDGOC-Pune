@@ -1,0 +1,28 @@
+{
+  "scenario": "MI vs CSK — Over 16, Death Phase",
+  "description": "Mumbai Indians chasing 178. Hardik Pandya in full flow. Heavy dew at Wankhede. Classic late-innings decision tree.",
+  "innings": 2,
+  "over": 16,
+  "ball": 2,
+  "batting_team": "MI",
+  "bowling_team": "CSK",
+  "score": "134/4",
+  "target": 178,
+  "required_run_rate": 11.2,
+  "batter_strike": { "name": "Hardik Pandya", "runs": 34, "balls": 22, "sr": 154.5 },
+  "batter_non_strike": { "name": "Tim David", "runs": 8, "balls": 5, "sr": 160.0 },
+  "bowlers": [
+    { "name": "Deepak Chahar",       "overs_used": 3, "economy": 9.3, "wickets": 1 },
+    { "name": "Tushar Deshpande",    "overs_used": 3, "economy": 10.7, "wickets": 1 },
+    { "name": "Jadeja",              "overs_used": 2, "economy": 7.0, "wickets": 1 },
+    { "name": "Matheesha Pathirana", "overs_used": 2, "economy": 9.0, "wickets": 1 }
+  ],
+  "pitch": "two-paced",
+  "dew_factor": "heavy",
+  "venue": "Wankhede Stadium, Mumbai",
+  "impact_player_available": true,
+  "strategic_timeout_used": false,
+  "phase": "death",
+  "key_debate_question": "Pathirana vs Jadeja for over 17 — does dew negate spin completely at Wankhede?",
+  "expected_agent_tension": "Strategist will prefer pace (Pathirana) for yorkers. Devil's Advocate will argue Jadeja's wider angles neutralise Hardik's strength zone. Dew data should lock the decision for Pathirana."
+}

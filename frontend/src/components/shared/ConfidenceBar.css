@@ -1,0 +1,34 @@
+.conf-bar { display: flex; flex-direction: column; gap: 6px; }
+.conf-bar__label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
+.conf-bar__track {
+  position: relative;
+  height: 8px;
+  background: var(--border-default);
+  border-radius: var(--r-pill);
+  overflow: hidden;
+}
+.conf-bar__fill {
+  height: 100%;
+  border-radius: var(--r-pill);
+  background: var(--bar-color, var(--gold));
+  width: 0%;
+  transition: none;
+  box-shadow: 0 0 8px var(--bar-color, var(--gold));
+}
+.conf-bar__fill.bar-animate {
+  animation: barFill 0.9s var(--ease-out) forwards;
+  animation-fill-mode: forwards;
+}
+@keyframes barFill {
+  from { width: 0%; }
+  to   { width: var(--target-width, 0%); }
+}
+.conf-bar__pct {
+  position: absolute;
+  right: 0; top: 50%;
+  transform: translateY(-50%);
+  font-size: 11px;
+  color: var(--text-secondary);
+  padding-right: 4px;
+  background: var(--bg-card);
+}

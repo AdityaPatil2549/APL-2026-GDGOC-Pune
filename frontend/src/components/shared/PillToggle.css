@@ -1,0 +1,33 @@
+.pill-toggle {
+  display: flex;
+  gap: 4px;
+  background: var(--bg-base);
+  border: 1px solid var(--border-default);
+  border-radius: var(--r-pill);
+  padding: 4px;
+}
+.pill-toggle__option {
+  flex: 1;
+  padding: 6px 14px;
+  background: transparent;
+  border: none;
+  border-radius: var(--r-pill);
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--t-fast) ease;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  justify-content: center;
+}
+.pill-toggle__option:hover { color: var(--text-primary); background: var(--border-subtle); }
+.pill-toggle__option--active {
+  background: var(--gold);
+  color: #0B1426;
+  font-weight: 700;
+  box-shadow: 0 2px 8px var(--gold-glow);
+}

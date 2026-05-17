@@ -1,0 +1,91 @@
+.call-card {
+  position: relative;
+  background: var(--bg-card);
+  border: 2px solid var(--gold);
+  border-radius: var(--r-xl);
+  padding: var(--sp-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+.call-card--high { border-color: var(--gold); animation: goldGlow 2s ease-in-out 3; }
+.call-card--mid  { border-color: var(--rrr-mid); border-style: dashed; }
+.call-card--low  { border-color: var(--coral); border-style: dotted; }
+
+.call-card__glow {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at top, rgba(245,166,35,0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.call-card__header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+}
+.call-card__icon {
+  font-size: 28px;
+  filter: drop-shadow(0 0 8px rgba(245,166,35,0.5));
+  flex-shrink: 0;
+}
+.call-card__label {
+  font-size: 10px; letter-spacing: 0.15em; font-weight: 700;
+  color: var(--gold); opacity: 0.7; text-transform: uppercase; margin-bottom: 4px;
+}
+.call-card__decision {
+  font-family: var(--font-display);
+  font-size: clamp(16px, 2vw, 22px);
+  color: var(--text-primary);
+  line-height: 1.15; letter-spacing: 0.03em;
+}
+
+.call-card__section-label {
+  display: block; font-size: 10px; letter-spacing: 0.12em; font-weight: 700;
+  color: var(--text-muted); text-transform: uppercase; margin-bottom: var(--sp-2);
+}
+.call-card__field-text { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+.call-card__reasoning-text {
+  font-size: 13px; color: var(--text-primary); line-height: 1.7;
+  font-style: italic; border-left: 2px solid var(--gold); padding-left: var(--sp-3);
+}
+
+.call-card__dissent-toggle {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%;
+  background: rgba(255,71,87,0.08); border: 1px solid rgba(255,71,87,0.25);
+  border-radius: var(--r-md); padding: var(--sp-2) var(--sp-3);
+  color: var(--coral); font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: all var(--t-fast) ease; font-family: var(--font-body);
+}
+.call-card__dissent-toggle:hover { background: rgba(255,71,87,0.14); }
+.call-card__dissent-text {
+  font-size: 13px; color: var(--text-secondary); line-height: 1.6;
+  padding: var(--sp-3); background: rgba(255,71,87,0.05);
+  border-radius: var(--r-md); margin-top: var(--sp-2);
+}
+
+.call-card__actions { display: flex; gap: var(--sp-2); flex-wrap: wrap; }
+.call-card__btn {
+  flex: 1; min-width: 60px;
+  padding: var(--sp-2) var(--sp-2);
+  border-radius: var(--r-md); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.05em; cursor: pointer; border: none;
+  font-family: var(--font-body); transition: all var(--t-fast) ease;
+}
+.call-card__btn--copy {
+  background: rgba(245,166,35,0.15); color: var(--gold);
+  border: 1px solid rgba(245,166,35,0.4);
+}
+.call-card__btn--copy:hover { background: rgba(245,166,35,0.25); }
+.call-card__btn--share {
+  background: rgba(58,134,255,0.12); color: var(--blue);
+  border: 1px solid rgba(58,134,255,0.35);
+}
+.call-card__btn--share:hover { background: rgba(58,134,255,0.22); }
+.call-card__btn--redebate {
+  background: rgba(46,213,115,0.1); color: var(--green);
+  border: 1px solid rgba(46,213,115,0.3);
+}
+.call-card__btn--redebate:hover { background: rgba(46,213,115,0.2); }
